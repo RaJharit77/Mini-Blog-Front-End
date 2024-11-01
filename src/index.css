@@ -17,13 +17,55 @@ body {
   background-color: #f9f9f9;
   background-image: 
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-    url("../public/img/blog.jpg");
+    url("../public/img/infini2.jpg");
   background-size: cover;
   background-position: center;
 }
 
+.rainbow-gradient {
+  background: linear-gradient(270deg, #ff5733, #ffbd33, #33ff57, #33ffbd, #3357ff, #a833ff, #ff33a1);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 5s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0%; }
+  100% { background-position: 100%; }
+}
+
+@keyframes bounce-up {
+  0% {
+    transform: translateY(27px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-bounce-up {
+  animation: bounce-up 3s forwards;
+}
+
 h1, h2, h3 {
   font-family: 'Poppins', sans-serif;
+}
+
+
+.glow-button {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.glow-button:hover {
+  box-shadow: 0 0 15px 5px rgba(255, 165, 0, 0.6); /* Lueur orange */
+}
+
+/* Effet glow personnalisé */
+.hover\\:glow-effect:hover {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
 }
 
 :root {
