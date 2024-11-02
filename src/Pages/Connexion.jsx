@@ -18,6 +18,7 @@ const Connexion = () => {
                 body: JSON.stringify({ username, password }),
             });
             if (response.ok) {
+                localStorage.setItem('username', username);
                 navigate('/');
             } else {
                 console.error("Erreur lors de la connexion");
