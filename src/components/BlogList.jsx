@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { FaCompress, FaEdit, FaEllipsisV, FaExpand, FaTrash } from "react-icons/fa";
+import { FaEdit, FaEllipsisV, FaTrash, FaUserCircle } from "react-icons/fa";
 
 function BlogList() {
     const [posts, setPosts] = useState([]);
     const [expandedPostId, setExpandedPostId] = useState(null);
+    const [showOptions, setShowOptions] = useState({});
 
     useEffect(() => {
         fetch("http://localhost:5000/api/consultationDesBlogs")
@@ -20,32 +21,60 @@ function BlogList() {
         setExpandedPostId(expandedPostId === id ? null : id);
     };
 
+    const toggleOptions = (id) => {
+        setShowOptions(prev => ({ ...prev, [id]: !prev[id] }));
+    };
+
     return (
-        <div className="bg-gray-900 bg-opacity-50 p-6 rounded shadow-lg max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto">
             <h1 className="text-2xl font-bold mb-4 text-sky-500 text-center">Articles de Blog</h1>
-            {posts.map(post => (
-                <article key={post.id} className="border p-4 mb-4 rounded-lg border-gray-300">
-                    <div className="flex justify-between">
-                        <h2 className="text-xl font-semibold text-gray-300">{post.title}</h2>
-                        <FaEllipsisV className="text-gray-300 cursor-pointer" />
-                    </div>
-                    {expandedPostId === post.id ? (
-                        <p className="text-gray-300">{post.content}</p>
-                    ) : (
-                        <p className="text-gray-300">{post.content.substring(0, 100)}...</p>
-                    )}
-                    {post.author && (
-                        <p className="text-sm text-gray-400 mt-2">Par : {post.author}</p>
-                    )}
-                    <div className="flex gap-2 mt-4">
-                        <button onClick={() => toggleExpand(post.id)} className="text-gray-300">
-                            {expandedPostId === post.id ? <FaCompress /> : <FaExpand />}
+            <div className="bg-gray-900 bg-opacity-50 p-6 rounded shadow-lg">
+                {posts.map(post => (
+                    <article key={post.id} className="border bg-white p-4 mb-6 rounded-lg shadow-md">
+                        <div className="flex items-center mb-3">
+                            <FaUserCircle className="text-gray-400 text-3xl mr-3" />
+                            <div className="flex-1">
+                                <h2 className="text-lg font-semibold text-gray-800">{post.author || "Auteur inconnu"}</h2>
+                                <p className="text-xs text-gray-500">Posté il y a quelques heures</p>
+                            </div>
+                            <div className="relative">
+                                <FaEllipsisV
+                                    className="text-gray-600 cursor-pointer"
+                                    onClick={() => toggleOptions(post.id)}
+                                />
+                                {showOptions[post.id] && (
+                                    <div className="absolute right-0 mt-2 bg-gray-800 text-gray-300 rounded shadow-lg p-2 z-10">
+                                        <div className="flex flex-col gap-2">
+                                            <button className="flex items-center gap-1 text-yellow-500" onClick={() => alert("Fonction de modification non implémentée")}>
+                                                <FaEdit /> Modifier
+                                            </button>
+                                            <button className="flex items-center gap-1 text-red-500" onClick={() => handleDelete(post.id)}>
+                                                <FaTrash /> Supprimer
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        {post.image && (
+                            <div className="mb-3">
+                                <img src={`http://localhost:5000/${post.image}`} alt="Publication" className="w-full rounded-md" />
+                            </div>
+                        )}
+                        <h3 className="text-xl font-bold text-gray-800 mb-2">{post.title}</h3>
+                        <div>
+                            {expandedPostId === post.id ? (
+                                <p className="text-gray-700">{post.content}</p>
+                            ) : (
+                                <p className="text-gray-700">{post.content.substring(0, 100)}...</p>
+                            )}
+                        </div>
+                        <button onClick={() => toggleExpand(post.id)} className="text-blue-500 mt-2 text-sm">
+                            {expandedPostId === post.id ? "Voir moins" : "Voir plus"}
                         </button>
-                        <FaEdit className="text-yellow-500 cursor-pointer" onClick={() => alert("Fonction de modification non implémentée")} />
-                        <FaTrash className="text-red-500 cursor-pointer" onClick={() => handleDelete(post.id)} />
-                    </div>
-                </article>
-            ))}
+                    </article>
+                ))}
+            </div>
         </div>
     );
 }

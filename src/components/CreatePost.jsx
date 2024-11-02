@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function CreatePost() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [author, setAuthor] = useState("");
     const [image, setImage] = useState(null);
+    const navigate = useNavigate(); // Initialisation du hook useNavigate
 
     const handleImageChange = (e) => {
         setImage(e.target.files[0]);
@@ -30,6 +32,8 @@ function CreatePost() {
         setContent("");
         setAuthor("");
         setImage(null);
+
+        navigate("/consultationDesBlogs");
     };
 
     return (
@@ -61,7 +65,7 @@ function CreatePost() {
                     onChange={handleImageChange}
                     className="border p-2 rounded-lg bg-gray-600 border-gray-600 text-gray-300"
                 />
-                <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+                <button type="submit" className="bg-sky-500 text-white p-2 rounded">
                     Publier
                 </button>
             </form>

@@ -26,7 +26,7 @@ function Home() {
                 <div className="mt-4 grid grid-cols-2 gap-4">
                     <Link 
                         to="/create"
-                        className={`bg-gradient-to-r from-yellow-400 to-sky-500 via-purple-500 text-black px-6 py-3 rounded-full shadow-lg 
+                        className={`bg-gradient-to-r from-yellow-400 to-sky-500 via-purple-500 text-black px-6 py-3 rounded-xl shadow-lg 
                                     transition-transform duration-500 transform translate-y-20 animate-bounce-up delay-100`}
                         data-aos="fade-up"
                     >
@@ -34,7 +34,7 @@ function Home() {
                     </Link>
                     <Link 
                         to="/posts"
-                        className={`bg-gradient-to-r from-green-400 to-pink-500 via-blue-500 text-black px-6 py-3 rounded-full shadow-lg 
+                        className={`bg-gradient-to-r from-green-400 to-pink-500 via-blue-500 text-black px-6 py-3 rounded-xl shadow-lg 
                                     transition-transform duration-500 transform translate-y-20 animate-bounce-up delay-200`}
                         data-aos="fade-up"
                     >
