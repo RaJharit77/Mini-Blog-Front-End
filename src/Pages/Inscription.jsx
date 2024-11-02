@@ -31,11 +31,11 @@ const Inscription = () => {
         <div className="flex justify-center items-center h-screen">
             <form onSubmit={handleSubmit} className="bg-black bg-opacity-60 p-6 rounded shadow-md relative">
                 <h2 className="text-xl mb-4 bg-gradient-to-r from-purple-500 via-emerald-500 to-pink-500 bg-clip-text text-transparent">Créer un compte</h2>
-                
+
                 <button onClick={() => navigate('/connexion')} className="absolute top-2 right-2 text-sky-500 bg-clip-text hover:text-sky-600 hover:bg-clip-text">
                     <FaTimes />
                 </button>
-                
+
                 <div className="mb-4">
                     <label className="block mb-2 bg-gradient-to-r from-yellow-500 via-emerald-500 to-pink-500 bg-clip-text text-transparent" htmlFor="username">Nom d'utilisateur</label>
                     <input
@@ -64,10 +64,6 @@ const Inscription = () => {
                     before:to-blue-500 before:scale-x-0 before:transition-transform before:duration-500 text-white py-2 px-4 rounded">
                     S'inscrire
                 </button>
-                
-                <p className="mt-4 text-center">
-                    Déjà un compte? <a href="/connexion" className="text-sky-500 hover:underline">Connectez-vous ici</a>
-                </p>
             </form>
         </div>
     );

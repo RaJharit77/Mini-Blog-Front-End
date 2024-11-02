@@ -16,7 +16,7 @@ function Navbar() {
     }, []);
 
     const handleLogout = () => {
-        navigate("/inscription");
+        navigate("/connexion");
     };
 
     return (
@@ -92,7 +92,7 @@ function Navbar() {
                                     before:to-blue-500 before:scale-x-0 before:transition-transform before:duration-500"
                         onClick={handleLogout}
                     >
-                        Se déconnecter
+                        Se connecter
                     </button>
                 </div>
             </div>

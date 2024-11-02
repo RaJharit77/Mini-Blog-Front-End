@@ -1,6 +1,6 @@
-// Connexion.jsx
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { FaTimes } from 'react-icons/fa';
+import { Link, useNavigate } from "react-router-dom";
 
 const Connexion = () => {
     const [username, setUsername] = useState("");
@@ -9,7 +9,6 @@ const Connexion = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Appel à l'API pour se connecter
         try {
             const response = await fetch("http://localhost:5000/api/connexion", {
                 method: "POST",
@@ -19,7 +18,6 @@ const Connexion = () => {
                 body: JSON.stringify({ username, password }),
             });
             if (response.ok) {
-                // Rediriger vers la page d'accueil ou dashboard
                 navigate('/');
             } else {
                 console.error("Erreur lors de la connexion");
@@ -31,8 +29,14 @@ const Connexion = () => {
 
     return (
         <div className="flex justify-center items-center h-screen">
-            <form onSubmit={handleSubmit} className="bg-black bg-opacity-60 p-6 rounded shadow-md">
+            <form onSubmit={handleSubmit} className="bg-black bg-opacity-60 p-6 rounded shadow-md relative">
+
+                <Link to="/" className="absolute top-2 right-2 text-sky-500">
+                    <FaTimes size={20} />
+                </Link>
+
                 <h2 className="text-xl mb-4 bg-gradient-to-r from-purple-500 via-emerald-500 to-pink-500 bg-clip-text text-transparent">Connexion</h2>
+
                 <div className="mb-4">
                     <label className="block mb-2 bg-gradient-to-r from-yellow-500 via-emerald-500 to-pink-500 bg-clip-text text-transparent" htmlFor="username">Nom d'utilisateur</label>
                     <input
@@ -61,6 +65,9 @@ const Connexion = () => {
                     before:to-blue-500 before:scale-x-0 before:transition-transform before:duration-500 text-white py-2 px-4 rounded">
                     Se connecter
                 </button>
+                <p className="mt-4 text-center">
+                    Pas de compte ? <Link to="/inscription" className="text-sky-500 hover:underline">Inscrivez-vous ici</Link>
+                </p>
             </form>
         </div>
     );
