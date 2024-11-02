@@ -5,33 +5,31 @@ function CreatePost() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [author, setAuthor] = useState("");
-    const [image, setImage] = useState(null);
-    const navigate = useNavigate(); // Initialisation du hook useNavigate
-
-    const handleImageChange = (e) => {
-        setImage(e.target.files[0]);
-    };
+    const [subject, setSubject] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append("title", title);
-        formData.append("content", content);
-        formData.append("author", author);
-        if (image) {
-            formData.append("image", image);
-        }
+        const postData = {
+            title,
+            content,
+            author,
+            subject
+        };
 
         await fetch("http://localhost:5000/api/creationDePublication", {
             method: "POST",
-            body: formData,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(postData),
         });
 
         setTitle("");
         setContent("");
         setAuthor("");
-        setImage(null);
+        setSubject("");
 
         navigate("/consultationDesBlogs");
     };
@@ -49,6 +47,13 @@ function CreatePost() {
                 />
                 <input
                     type="text"
+                    placeholder="Sujet"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    className="border p-2 rounded-lg bg-gray-600 border-gray-600 text-gray-300"
+                />
+                <input
+                    type="text"
                     placeholder="Titre"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
@@ -58,11 +63,6 @@ function CreatePost() {
                     placeholder="Contenu"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    className="border p-2 rounded-lg bg-gray-600 border-gray-600 text-gray-300"
-                />
-                <input
-                    type="file"
-                    onChange={handleImageChange}
                     className="border p-2 rounded-lg bg-gray-600 border-gray-600 text-gray-300"
                 />
                 <button type="submit" className="bg-sky-500 text-white p-2 rounded">
