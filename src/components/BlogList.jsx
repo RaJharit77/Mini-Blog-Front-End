@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaEdit, FaEllipsisV, FaTrash, FaUserCircle } from "react-icons/fa";
+import { FaEdit, FaEllipsisV, FaGlobe, FaTrash, FaUserCircle } from "react-icons/fa";
 
 function BlogList() {
     const [posts, setPosts] = useState([]);
@@ -9,8 +9,40 @@ function BlogList() {
     useEffect(() => {
         fetch("http://localhost:5000/api/consultationDesBlogs")
             .then(response => response.json())
-            .then(data => setPosts(data));
+            .then(data => {
+                const postsWithTimestamps = data.map(post => {
+                    const createdAt = new Date(post.createdAt);
+                    console.log("Date de création analysée :", createdAt, "Format brut :", post.createdAt);
+                    return {
+                        ...post,
+                        createdAt: createdAt
+                    };
+                });
+                setPosts(postsWithTimestamps);
+            });
     }, []);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setPosts(currentPosts => [...currentPosts]);
+        }, 60000);
+
+        return () => clearInterval(timer);
+    }, []);
+
+    const formatTimeAgo = (date) => {
+        if (!(date instanceof Date) || isNaN(date.getTime())) {
+            return "Date invalide";
+        }
+
+        const now = new Date();
+        const diff = Math.floor((now - date) / 1000);
+
+        if (diff < 60) return "il y a quelques secondes";
+        if (diff < 3600) return `il y a ${Math.floor(diff / 60)} minute(s)`;
+        if (diff < 86400) return `il y a ${Math.floor(diff / 3600)} heure(s)`;
+        return `il y a ${Math.floor(diff / 86400)} jour(s)`;
+    };
 
     const handleDelete = async (id) => {
         await fetch(`http://localhost:5000/api/consultationDesBlogs/${id}`, { method: "DELETE" });
@@ -26,16 +58,19 @@ function BlogList() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto">
-            {/**<h1 className="text-2xl font-bold mb-4 text-sky-500 text-center">Articles de Blog</h1>*/}
-            <div className="bg-transparent p-6 rounded-lg shadow-lg">
+        <div className="max-w-5xl mx-auto">
+            <div className="bg-transparent p-6 rounded-lg shadow-lg grid grid-cols-1 gap-7">
                 {posts.map(post => (
-                    <article key={post.id} className="border bg-black p-5 mb-7 rounded-lg shadow-md">
-                        <div className="flex items-center mb-3">
-                            <FaUserCircle className="text-gray-100 text-3xl mr-3" />
-                            <div className="flex-1">
-                                <h2 className="text-lg font-semibold text-gray-100 text-left">{post.author || "Auteur inconnu"}</h2>
-                                <p className="text-xs text-gray-100">Posté il y a quelques heures</p>
+                    <article key={post.id} className="border bg-black p-4 rounded-lg shadow-md flex flex-col">
+                        <div className="flex items-start justify-between mb-3">
+                            <div className="flex items-center">
+                                <FaUserCircle className="text-gray-100 text-3xl mr-3" />
+                                <div className="flex-1">
+                                    <h2 className="text-lg font-semibold text-gray-100 text-left">{post.author || "Auteur inconnu"}</h2>
+                                    <p className="text-xs text-gray-100 flex items-center">
+                                        <FaGlobe className="mr-1" /> {formatTimeAgo(post.createdAt)}
+                                    </p>
+                                </div>
                             </div>
                             <div className="relative">
                                 <FaEllipsisV

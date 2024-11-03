@@ -25,7 +25,7 @@ function Home() {
             <Fade in={showButtons} timeout={500}>
                 <div className="mt-4 grid grid-cols-2 gap-4">
                     <Link 
-                        to="/create"
+                        to="/creationDePublication"
                         className={`bg-gradient-to-r from-yellow-400 to-sky-500 via-purple-500 text-black px-6 py-3 rounded-xl shadow-lg 
                                     transition-transform duration-500 transform translate-y-20 animate-bounce-up delay-100`}
                         data-aos="fade-up"
@@ -33,7 +33,7 @@ function Home() {
                         Créer une publication
                     </Link>
                     <Link 
-                        to="/posts"
+                        to="/consultationDesBlogs"
                         className={`bg-gradient-to-r from-green-400 to-pink-500 via-blue-500 text-black px-6 py-3 rounded-xl shadow-lg 
                                     transition-transform duration-500 transform translate-y-20 animate-bounce-up delay-200`}
                         data-aos="fade-up"
