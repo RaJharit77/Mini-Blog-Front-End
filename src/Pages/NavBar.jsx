@@ -48,7 +48,7 @@ function Navbar() {
                                 transition-all duration-300 hover:bg-gradient-to-r hover:from-red-400 hover:via-yellow-400 hover:to-blue-500 
                                 hover:text-transparent hover:bg-clip-text`}
                     >
-                        Infinitix Tasks
+                        Infinitix Task
                     </h1>
                 </a>
 

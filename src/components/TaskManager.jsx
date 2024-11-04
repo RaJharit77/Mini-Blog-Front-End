@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { FaCheck, FaEdit, FaTimes, FaTrash } from "react-icons/fa";
 
 function TaskManager() {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState({ title: "", description: "", status: "En cours" });
+    const [selectedTask, setSelectedTask] = useState(null);
+    const [updatedStatus, setUpdatedStatus] = useState("En cours");
 
     useEffect(() => {
         fetchTasks();
@@ -22,6 +25,23 @@ function TaskManager() {
             body: JSON.stringify(newTask)
         });
         setNewTask({ title: "", description: "", status: "En cours" });
+        fetchTasks();
+    };
+
+    const handleUpdateStatus = async (taskId) => {
+        await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ status: updatedStatus })
+        });
+        setSelectedTask(null);
+        fetchTasks();
+    };
+
+    const handleDeleteTask = async (taskId) => {
+        await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+            method: "DELETE"
+        });
         fetchTasks();
     };
 
@@ -63,11 +83,55 @@ function TaskManager() {
             </form>
             <ul>
                 {tasks.map(task => (
-                    <li key={task.id} className="mb-2 border-b pb-2">
+                    <li key={task.id} className="mb-2 border-b pb-2 flex justify-between items-center">
                         <span>{task.title} - {task.description} - <strong>{task.status}</strong></span>
+                        <div className="flex gap-2">
+                            <button
+                                onClick={() => {
+                                    setSelectedTask(task.id);
+                                    setUpdatedStatus(task.status);
+                                }}
+                                className="text-yellow-500 p-1 hover:text-yellow-400"
+                            >
+                                <FaEdit />
+                            </button>
+                            <button
+                                onClick={() => handleDeleteTask(task.id)}
+                                className="text-red-500 p-1 hover:text-red-400"
+                            >
+                                <FaTrash />
+                            </button>
+                        </div>
                     </li>
                 ))}
             </ul>
+
+            {selectedTask && (
+                <div className="mt-4 p-4 bg-gray-700 rounded-lg">
+                    <h2 className="text-xl mb-2 text-white">Modifier le statut de la tâche</h2>
+                    <select
+                        value={updatedStatus}
+                        onChange={(e) => setUpdatedStatus(e.target.value)}
+                        className="border p-2 rounded-lg bg-black text-gray-100 mb-2"
+                    >
+                        <option value="En cours">En cours</option>
+                        <option value="Terminée">Terminée</option>
+                        <option value="En attente">En attente</option>
+                    </select>
+                    <button
+                        onClick={() => handleUpdateStatus(selectedTask)}
+                        className="text-green-500 p-2 hover:text-green-400"
+                    >
+                        <FaCheck />
+                    </button>
+                    <button
+                        onClick={() => setSelectedTask(null)}
+                        className="text-red-500 p-2 hover:text-red-400 ml-2"
+                    >
+                        <FaTimes />
+                    </button>
+                </div>
+            )}
         </div>
     );
 }
