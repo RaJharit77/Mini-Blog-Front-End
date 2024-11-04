@@ -7,10 +7,12 @@ const Connexion = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    const apiUrl= "http://localhost:5000" || import.meta.env.VITE_REACT_API_URL;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:5000/api/connexion", {
+            const response = await fetch(`${apiUrl}/api/connexion`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -32,7 +34,7 @@ const Connexion = () => {
         <div className="flex justify-center items-center h-screen">
             <form onSubmit={handleSubmit} className="bg-black bg-opacity-60 p-6 rounded shadow-md relative">
 
-                <Link to="/" className="absolute top-2 right-2 text-sky-500">
+                <Link to="/" className="absolute top-2 right-2 text-sky-500 hover:text-pink-500">
                     <FaTimes size={20} />
                 </Link>
 

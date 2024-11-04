@@ -5,8 +5,10 @@ import { Doughnut, Pie } from "react-chartjs-2";
 function TaskStats() {
     const [taskStats, setTaskStats] = useState([]);
 
+    const apiUrl= "http://localhost:5000" || import.meta.env.VITE_REACT_API_URL;
+
     useEffect(() => {
-        fetch("http://localhost:5000/api/tasks")
+        fetch(`${apiUrl}/api/tasks`)
             .then(response => response.json())
             .then(data => setTaskStats(data));
     }, []);
@@ -31,7 +33,7 @@ function TaskStats() {
             </h1>
             <div className="flex justify-center w-full">
                 <div className="w-1/2 mx-4">
-                    <h2 className="text-lg mb-2 bg-gradient-to-r from-sky-400 via-pink-500 to-yellow-400 bg-clip-text text-transparent">Diagramme en Doughnut</h2>
+                    <h2 className="text-lg mb-2 bg-gradient-to-r from-yellow-400 via-pink-400 to-sky-400 bg-clip-text text-transparent">Diagramme en Doughnut</h2>
                     <Doughnut data={chartData} options={{
                         maintainAspectRatio: true, 
                         responsive: true,
@@ -45,7 +47,7 @@ function TaskStats() {
                     }} height={200} />
                 </div>
                 <div className="w-1/2 mx-4">
-                    <h2 className="text-lg mb-2 bg-gradient-to-r from-sky-400 via-yellow-400 to-pink-500 bg-clip-text text-transparent">Diagramme en Pie</h2>
+                    <h2 className="text-lg mb-2 bg-gradient-to-r from-sky-500 via-pink-400 to-yellow-400 bg-clip-text text-transparent">Diagramme en Pie</h2>
                     <Pie data={chartData} options={{
                         maintainAspectRatio: true,
                         responsive: true,

@@ -11,15 +11,17 @@ function TaskManager() {
         fetchTasks();
     }, []);
 
+    const apiUrl = "http://localhost:5000" || import.meta.env.VITE_REACT_API_URL;
+
     const fetchTasks = async () => {
-        const response = await fetch("http://localhost:5000/api/tasks");
+        const response = await fetch(`${apiUrl}/api/tasks`);
         const data = await response.json();
         setTasks(data);
     };
 
     const handleAddTask = async (e) => {
         e.preventDefault();
-        await fetch("http://localhost:5000/api/tasks", {
+        await fetch(`${apiUrl}/api/tasks`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newTask)
@@ -29,7 +31,7 @@ function TaskManager() {
     };
 
     const handleUpdateStatus = async (taskId) => {
-        await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+        await fetch(`${apiUrl}/api/tasks/${taskId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ status: updatedStatus })
@@ -39,7 +41,7 @@ function TaskManager() {
     };
 
     const handleDeleteTask = async (taskId) => {
-        await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+        await fetch(`${apiUrl}/api/tasks/${taskId}`, {
             method: "DELETE"
         });
         fetchTasks();

@@ -1,7 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Connexion from "./Pages/Connexion";
+import ConnexionPage from "./Pages/ConnexionPage";
 import HomePage from "./Pages/HomePage";
-import Inscription from "./Pages/Inscription";
+import InscriptionPage from "./Pages/InscriptionPage";
 import Navbar from "./Pages/NavBar";
 import TaskManagerPage from "./Pages/TaskManagerPage";
 import TaskStatsPage from "./Pages/TaskStatsPage";
@@ -15,8 +15,8 @@ function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/tasks" element={<TaskManagerPage />} />
                     <Route path="/tasks/stats" element={<TaskStatsPage />} />
-                    <Route path="/inscription" element={<Inscription />} />
-                    <Route path="/connexion" element={<Connexion />} />
+                    <Route path="/inscription" element={<InscriptionPage />} />
+                    <Route path="/connexion" element={<ConnexionPage />} />
                 </Routes>
             </div>
         </Router>
