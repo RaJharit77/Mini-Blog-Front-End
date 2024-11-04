@@ -1,10 +1,10 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import BlogList from "./Pages/BlogListPage";
 import Connexion from "./Pages/Connexion";
-import CreatePost from "./Pages/CreatePostPage";
 import HomePage from "./Pages/HomePage";
 import Inscription from "./Pages/Inscription";
 import Navbar from "./Pages/NavBar";
+import TaskManagerPage from "./Pages/TaskManagerPage";
+import TaskStatsPage from "./Pages/TaskStatsPage";
 
 function App() {
     return (
@@ -13,8 +13,8 @@ function App() {
             <div className="flex justify-center items-center p-0 gap-0 min-h-screen text-center">
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/creationDePublication" element={<CreatePost />} />
-                    <Route path="/consultationDesBlogs" element={<BlogList />} />
+                    <Route path="/tasks" element={<TaskManagerPage />} />
+                    <Route path="/tasks/stats" element={<TaskStatsPage />} />
                     <Route path="/inscription" element={<Inscription />} />
                     <Route path="/connexion" element={<Connexion />} />
                 </Routes>

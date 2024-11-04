@@ -48,18 +48,18 @@ function Navbar() {
                                 transition-all duration-300 hover:bg-gradient-to-r hover:from-red-400 hover:via-yellow-400 hover:to-blue-500 
                                 hover:text-transparent hover:bg-clip-text`}
                     >
-                        Infinitix Blog
+                        Infinitix Tasks
                     </h1>
                 </a>
 
                 <div className={`md:flex md:items-center ${menuOpen ? 'block' : 'hidden'} w-full md:w-auto mt-8 md:mt-0`}>
                     <div className="flex flex-col md:flex-row md:space-x-4 items-center">
-                        {['Accueil', 'Création de Publication', 'Consultation des Blogs'].map((text, index) => {
+                        {['Accueil', 'Gestionnaires', 'Statistiques'].map((text, index) => {
                             const path = text === 'Accueil'
                                 ? '/'
-                                : text === 'Création de Publication'
-                                    ? '/creationDePublication'
-                                    : '/consultationDesBlogs';
+                                : text === 'Gestionnaires'
+                                    ? '/tasks'
+                                    : '/tasks/stats';
 
                             return (
                                 <Link
