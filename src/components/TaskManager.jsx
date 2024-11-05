@@ -11,7 +11,7 @@ function TaskManager() {
         fetchTasks();
     }, []);
 
-    const apiUrl = "https://infinitix-task-back-end.vercel.app" || import.meta.env.VITE_REACT_API_URL || "https://infinitix-task-back-end.onrender.com" || import.meta.env.VITE_REACT_APP_API_URL;
+    const apiUrl = process.env.VITE_REACT_API_URL || "https://infinitix-task-back-end.vercel.app" || "https://infinitix-task-back-end.onrender.com" || process.env.VITE_REACT_APP_API_URL;
 
     /**const apiUrl = "http://localhost:5000" || import.meta.env.VITE_REACT_API_URL;*/
 
