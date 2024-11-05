@@ -20,8 +20,8 @@ function TaskManager() {
             const response = await fetch(`${apiUrl}/api/tasks`);
             if (!response.ok) throw new Error(`Erreur ${response.status}: ${response.statusText}`);
             const data = await response.json();
-            console.log('Données récupérées:', data); 
-            setTasks(data.tasks);
+            console.log('Données récupérées:', data);
+            setTasks(data.tasks || data); 
         } catch (error) {
             console.error("Erreur lors de la récupération des tâches:", error);
         }
@@ -35,7 +35,7 @@ function TaskManager() {
             body: JSON.stringify(newTask)
         });
         setNewTask({ title: "", description: "", status: "En cours" });
-        fetchTasks();
+        await fetchTasks(); 
     };
 
     const handleUpdateStatus = async (taskId) => {
