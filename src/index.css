@@ -30,6 +30,14 @@ body {
   animation: rainbow 5s linear infinite;
 }
 
+footer {
+  margin-top: auto;
+}
+
+footer p {
+  margin: 0;
+}
+
 @keyframes rainbow {
   0% { background-position: 0%; }
   100% { background-position: 100%; }
