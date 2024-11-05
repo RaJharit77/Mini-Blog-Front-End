@@ -11,16 +11,17 @@ function TaskManager() {
         fetchTasks();
     }, []);
 
-    const apiUrl = import.meta.env.VITE_REACT_API_URL || "https://infinitix-task-back-end.vercel.app" || "https://infinitix-task-back-end.onrender.com" || import.meta.env.VITE_REACT_APP_API_URL;
+    /**const apiUrl = import.meta.env.VITE_REACT_API_URL || "https://infinitix-task-back-end.vercel.app" || "https://infinitix-task-back-end.onrender.com" || import.meta.env.VITE_REACT_APP_API_URL;*/
 
-    /**const apiUrl = "http://localhost:5000" || import.meta.env.VITE_REACT_API_URL;*/
+    const apiUrl = "http://localhost:5000";
 
     const fetchTasks = async () => {
         try {
             const response = await fetch(`${apiUrl}/api/tasks`);
             if (!response.ok) throw new Error(`Erreur ${response.status}: ${response.statusText}`);
             const data = await response.json();
-            setTasks(data);
+            console.log('Données récupérées:', data); 
+            setTasks(data.tasks);
         } catch (error) {
             console.error("Erreur lors de la récupération des tâches:", error);
         }
@@ -91,7 +92,7 @@ function TaskManager() {
                 </button>
             </form>
             <ul>
-                {tasks.map(task => (
+                {Array.isArray(tasks) && tasks.map(task => (
                     <li key={task.id} className="mb-2 border-b pb-2 flex justify-between items-center">
                         <span>{task.title} - {task.description} - <strong>{task.status}</strong></span>
                         <div className="flex gap-2">

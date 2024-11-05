@@ -5,20 +5,27 @@ import { Doughnut, Pie } from "react-chartjs-2";
 function TaskStats() {
     const [taskStats, setTaskStats] = useState([]);
 
-    const apiUrl = import.meta.env.VITE_REACT_API_URL || "https://infinitix-task-back-end.vercel.app" || "https://infinitix-task-back-end.onrender.com" || import.meta.env.VITE_REACT_APP_API_URL;
+    /**const apiUrl = import.meta.env.VITE_REACT_API_URL || "https://infinitix-task-back-end.vercel.app" || "https://infinitix-task-back-end.onrender.com" || import.meta.env.VITE_REACT_APP_API_URL;*/
 
-    /**const apiUrl= "http://localhost:5000" || import.meta.env.VITE_REACT_API_URL;*/
+    const apiUrl = "http://localhost:5000";
 
     useEffect(() => {
         fetch(`${apiUrl}/api/tasks`)
             .then(response => response.json())
-            .then(data => setTaskStats(data));
+            .then(data => {
+                console.log(data);
+                setTaskStats(Array.isArray(data) ? data : []);
+            })
+            .catch(err => {
+                console.error('Erreur lors de la récupération des données:', err);
+                setTaskStats([]);
+            });
     }, []);
 
-    const taskStatuses = taskStats.reduce((acc, task) => {
+    const taskStatuses = Array.isArray(taskStats) ? taskStats.reduce((acc, task) => {
         acc[task.status] = (acc[task.status] || 0) + 1;
         return acc;
-    }, {});
+    }, {}) : {};
 
     const chartData = {
         labels: Object.keys(taskStatuses),
@@ -37,7 +44,7 @@ function TaskStats() {
                 <div className="w-1/2 mx-4">
                     <h2 className="text-lg mb-2 bg-gradient-to-r from-yellow-400 via-pink-400 to-sky-400 bg-clip-text text-transparent">Diagramme en Doughnut</h2>
                     <Doughnut data={chartData} options={{
-                        maintainAspectRatio: true, 
+                        maintainAspectRatio: true,
                         responsive: true,
                         plugins: {
                             legend: {
