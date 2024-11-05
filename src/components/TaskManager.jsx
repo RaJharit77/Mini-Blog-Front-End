@@ -29,15 +29,26 @@ function TaskManager() {
 
     const handleAddTask = async (e) => {
         e.preventDefault();
-        await fetch(`${apiUrl}/api/tasks`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newTask)
-        });
-        setNewTask({ title: "", description: "", status: "En cours" });
-        await fetchTasks(); 
+        console.log("Ajout de la tâche:", newTask);
+        
+        try {
+            const response = await fetch(`${apiUrl}/api/tasks`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newTask)
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Erreur lors de l'ajout de la tâche: ${response.status}`);
+            }
+    
+            setNewTask({ title: "", description: "", status: "En cours" });
+            await fetchTasks();
+        } catch (error) {
+            console.error("Erreur lors de l'ajout de la tâche:", error);
+        }
     };
-
+    
     const handleUpdateStatus = async (taskId) => {
         await fetch(`${apiUrl}/api/tasks/${taskId}`, {
             method: "PUT",
