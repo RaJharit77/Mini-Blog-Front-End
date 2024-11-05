@@ -7,7 +7,7 @@ const Inscription = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const apiUrl = "https://infinitix-task-back-end.vercel.app" || import.meta.env.VITE_REACT_API_URL || "https://infinitix-task-back-end.onrender.com" || import.meta.env.VITE_REACT_APP_API_URL;
+    const apiUrl = import.meta.env.VITE_REACT_API_URL || "https://infinitix-task-back-end.vercel.app" || "https://infinitix-task-back-end.onrender.com" || import.meta.env.VITE_REACT_APP_API_URL;
 
     /**const apiUrl = "http://localhost:5000" || import.meta.env.VITE_REACT_API_URL;*/
 
