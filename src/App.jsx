@@ -1,5 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import ConnexionPage from "./Pages/ConnexionPage";
+import Footer from "./Pages/Footer";
 import HomePage from "./Pages/HomePage";
 import InscriptionPage from "./Pages/InscriptionPage";
 import Navbar from "./Pages/NavBar";
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/connexion" element={<ConnexionPage />} />
                 </Routes>
             </div>
+            <Footer />
         </Router>
     );
 }

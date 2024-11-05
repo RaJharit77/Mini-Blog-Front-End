@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { FaUserCircle } from 'react-icons/fa'; // Import de l'icône de profil
+import { FaUserCircle } from 'react-icons/fa';
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../public/img/infini.jpg";
 
 function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
-    const [user, setUser] = useState(null); // État pour l'utilisateur
-
+    const [user, setUser] = useState(null); 
     const navigate = useNavigate();
 
     useEffect(() => {
