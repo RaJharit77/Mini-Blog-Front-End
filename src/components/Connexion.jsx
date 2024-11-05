@@ -34,7 +34,7 @@ const Connexion = () => {
 
     return (
         <div className="flex justify-center items-center h-screen">
-            <form onSubmit={handleSubmit} className="bg-black bg-opacity-60 p-6 rounded shadow-md relative">
+            <form onSubmit={handleSubmit} className="bg-black bg-opacity-70 p-6 rounded shadow-md relative">
 
                 <Link to="/" className="absolute top-2 right-2 text-sky-500 hover:text-pink-500">
                     <FaTimes size={20} />
@@ -49,7 +49,7 @@ const Connexion = () => {
                         id="username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
-                        className="border border-gray-300 p-2 rounded w-full"
+                        className="border border-gray-300 p-2 rounded w-full bg-black"
                         required
                     />
                 </div>
@@ -60,7 +60,7 @@ const Connexion = () => {
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="border border-gray-300 p-2 rounded w-full"
+                        className="border border-gray-300 p-2 rounded w-full bg-black"
                         required
                     />
                 </div>

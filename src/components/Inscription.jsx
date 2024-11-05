@@ -33,7 +33,7 @@ const Inscription = () => {
 
     return (
         <div className="flex justify-center items-center h-screen">
-            <form onSubmit={handleSubmit} className="bg-white bg-opacity-70 p-12 rounded shadow-md relative">
+            <form onSubmit={handleSubmit} className="bg-black bg-opacity-70 p-12 rounded shadow-md relative">
                 <h2 className="text-xl mb-4 bg-gradient-to-r from-purple-500 via-emerald-500 to-pink-500 bg-clip-text text-transparent">Créer un compte</h2>
 
                 <button onClick={() => navigate('/connexion')} className="absolute top-2 px-2 right-0 mr-2 text-sky-500 bg-clip-text hover:text-pink-500 hover:bg-clip-text">
