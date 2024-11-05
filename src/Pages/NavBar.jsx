@@ -36,7 +36,7 @@ function Navbar() {
                 }`}
         >
             <div className={`max-w-screen-xl mx-auto flex justify-between items-center p-4 ${menuOpen ? 'mt-10' : ''}`}>
-                <a href="/" className="flex items-center cursor-pointer">
+                <a href="https://infinitix-task-manager.vercel.app" className="flex items-center cursor-pointer">
                     <img
                         src={logo}
                         alt="Infinitix Logo"

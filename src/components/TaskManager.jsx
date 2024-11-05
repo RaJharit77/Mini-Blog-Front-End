@@ -16,9 +16,14 @@ function TaskManager() {
     /**const apiUrl = "http://localhost:5000" || import.meta.env.VITE_REACT_API_URL;*/
 
     const fetchTasks = async () => {
-        const response = await fetch(`${apiUrl}/api/tasks`);
-        const data = await response.json();
-        setTasks(data);
+        try {
+            const response = await fetch(`${apiUrl}/api/tasks`);
+            if (!response.ok) throw new Error(`Erreur ${response.status}: ${response.statusText}`);
+            const data = await response.json();
+            setTasks(data);
+        } catch (error) {
+            console.error("Erreur lors de la récupération des tâches:", error);
+        }
     };
 
     const handleAddTask = async (e) => {
