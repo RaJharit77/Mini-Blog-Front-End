@@ -30,7 +30,7 @@ function Home() {
                                     transition-transform duration-500 transform translate-y-20 animate-bounce-up delay-100 hover:text-indigo-700`}
                         data-aos="fade-up"
                     >
-                        Créer une publication
+                        Gestionnaire des tâches
                     </Link>
                     <Link 
                         to="/tasks/stats"
@@ -38,7 +38,7 @@ function Home() {
                                     transition-transform duration-500 transform translate-y-20 animate-bounce-up delay-200 hover:text-indigo-700`}
                         data-aos="fade-up"
                     >
-                        Consulter les blogs
+                        Statistiques des tâches
                     </Link>
                 </div>
             </Fade>
