@@ -7,9 +7,7 @@ const Connexion = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const apiUrl =  import.meta.env.VITE_REACT_API_URL || "https://infinitix-task-back-end.vercel.app" || "https://infinitix-task-back-end.onrender.com" || import.meta.env.VITE_REACT_APP_API_URL;
-
-    /**const apiUrl= "http://localhost:5000" || import.meta.env.VITE_REACT_API_URL;*/
+    const apiUrl = import.meta.env.VITE_REACT_API_URL || "https://infinitix-task-back-end.vercel.app" || "https://infinitix-task-back-end.onrender.com" || import.meta.env.VITE_REACT_APP_API_URL;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,6 +22,7 @@ const Connexion = () => {
             if (response.ok) {
                 localStorage.setItem('username', username);
                 navigate('/');
+                window.location.reload();  // Rafraîchissement automatique après la connexion
             } else {
                 console.error("Erreur lors de la connexion");
             }
@@ -35,7 +34,6 @@ const Connexion = () => {
     return (
         <div className="flex justify-center items-center h-screen">
             <form onSubmit={handleSubmit} className="bg-black bg-opacity-70 p-6 rounded shadow-md relative">
-
                 <Link to="/" className="absolute top-2 right-2 text-sky-500 hover:text-pink-500">
                     <FaTimes size={20} />
                 </Link>
