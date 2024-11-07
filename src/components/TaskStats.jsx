@@ -36,13 +36,13 @@ function TaskStats() {
     };
 
     return (
-        <div className="p-10 flex flex-col items-center">
-            <h1 className="text-2xl bg-gradient-to-r from-sky-400 via-yellow-400 to-sky-500 bg-clip-text text-transparent font-bold mb-6">
+        <div className="p-4 sm:p-10 flex flex-col items-center">
+            <h1 className="text-2xl bg-gradient-to-r from-sky-400 via-yellow-400 to-sky-500 bg-clip-text text-transparent font-bold mb-6 text-center">
                 Statistiques des tâches
             </h1>
-            <div className="flex justify-center w-full">
-                <div className="w-1/2 mx-4">
-                    <h2 className="text-lg mb-2 bg-gradient-to-r from-yellow-400 via-pink-400 to-sky-400 bg-clip-text text-transparent">Diagramme en Doughnut</h2>
+            <div className="flex flex-col sm:flex-row justify-center w-full">
+                <div className="w-full sm:w-1/2 p-2">
+                    <h2 className="text-lg mb-2 bg-gradient-to-r from-yellow-400 via-pink-400 to-sky-400 bg-clip-text text-transparent text-center sm:text-left">Diagramme en Doughnut</h2>
                     <Doughnut data={chartData} options={{
                         maintainAspectRatio: true,
                         responsive: true,
@@ -53,10 +53,10 @@ function TaskStats() {
                                 }
                             }
                         }
-                    }} height={200} />
+                    }} />
                 </div>
-                <div className="w-1/2 mx-4">
-                    <h2 className="text-lg mb-2 bg-gradient-to-r from-sky-500 via-pink-400 to-yellow-400 bg-clip-text text-transparent">Diagramme en Pie</h2>
+                <div className="w-full sm:w-1/2 p-2 mt-4 sm:mt-0">
+                    <h2 className="text-lg mb-2 bg-gradient-to-r from-sky-500 via-pink-400 to-yellow-400 bg-clip-text text-transparent text-center sm:text-left">Diagramme en Pie</h2>
                     <Pie data={chartData} options={{
                         maintainAspectRatio: true,
                         responsive: true,
@@ -67,7 +67,7 @@ function TaskStats() {
                                 }
                             }
                         }
-                    }} height={200} />
+                    }} />
                 </div>
             </div>
         </div>
