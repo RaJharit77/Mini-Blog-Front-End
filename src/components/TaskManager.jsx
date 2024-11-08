@@ -115,13 +115,13 @@ function TaskManager() {
                                     setSelectedTask(task.id);
                                     setUpdatedStatus(task.status);
                                 }}
-                                className="text-yellow-500 p-1 hover:text-yellow-400"
+                                className="text-yellow-500 p-1 hover:text-yellow-400 bg-transparent"
                             >
                                 <FaEdit />
                             </button>
                             <button
                                 onClick={() => handleDeleteTask(task.id)}
-                                className="text-red-500 p-1 hover:text-red-400"
+                                className="text-red-500 p-1 hover:text-red-400 bg-transparent"
                             >
                                 <FaTrash />
                             </button>
