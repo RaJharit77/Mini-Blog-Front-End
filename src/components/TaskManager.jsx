@@ -103,8 +103,7 @@ function TaskManager() {
                 </button>
             </form>
 
-            {/* Liste des tâches affichée en dehors du formulaire */}
-            <ul>
+            <ul className="bg-gray-800 bg-opacity-50 rounded-lg">
                 {Array.isArray(tasks) && tasks.map(task => (
                     <li key={task.id} className="mb-2 border-b pb-2 flex justify-between items-center">
                         <span>{task.title} - {task.description} - <strong>{task.status}</strong></span>
