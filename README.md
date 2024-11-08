@@ -1,8 +1,7 @@
-# React + Vite
+# Infinitix Task 
+Ce projet est à propos d'un site de gestion des tâches nommé <mark>Infinitix Task®</mark> en utilisant <mark>Vite JS et React JS(JS)</mark> comme outils pour le front-end de ce site.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Description du projet
+Ceci est une repository pour l'interface utilisateur ou UI de mon projet personnel pendant une année de passage chez HEI(Haute École d'informatique).
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### L'idée générale du projet
