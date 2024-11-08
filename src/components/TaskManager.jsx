@@ -105,9 +105,9 @@ function TaskManager() {
                 </button>
             </form>
 
-            <ul className="p-4 bg-gray-800 bg-opacity-50 rounded-lg">
+            <ul className="p-3 bg-gray-800 bg-opacity-50 rounded-lg">
                 {Array.isArray(tasks) && tasks.map(task => (
-                    <li key={task.id} className="mb-2 border-b pb-2 flex justify-between items-center text-gray-100">
+                    <li key={task.id} className="mb-1 border-b pb-2 flex justify-between items-center text-gray-100">
                         <span>{task.title} - {task.description} - <strong>{task.status}</strong></span>
                         <div className="flex gap-2">
                             <button
