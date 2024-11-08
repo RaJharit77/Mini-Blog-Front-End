@@ -21,7 +21,7 @@ function TaskManager() {
             if (!response.ok) throw new Error(`Erreur ${response.status}: ${response.statusText}`);
             const data = await response.json();
             console.log('Données récupérées:', data);
-            setTasks(data.tasks || data); 
+            setTasks(data.tasks || data);
         } catch (error) {
             console.error("Erreur lors de la récupération des tâches:", error);
         }
@@ -30,25 +30,25 @@ function TaskManager() {
     const handleAddTask = async (e) => {
         e.preventDefault();
         console.log("Ajout de la tâche:", newTask);
-        
+
         try {
             const response = await fetch(`${apiUrl}/api/tasks`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newTask)
             });
-    
+
             if (!response.ok) {
                 throw new Error(`Erreur lors de l'ajout de la tâche: ${response.status}`);
             }
-    
+
             setNewTask({ title: "", description: "", status: "En cours" });
             await fetchTasks();
         } catch (error) {
             console.error("Erreur lors de l'ajout de la tâche:", error);
         }
     };
-    
+
     const handleUpdateStatus = async (taskId) => {
         await fetch(`${apiUrl}/api/tasks/${taskId}`, {
             method: "PUT",
@@ -67,15 +67,17 @@ function TaskManager() {
     };
 
     return (
-        <div className="p-3 bg-gray-800 bg-opacity-50 rounded-lg">
-            <h1 className="text-2xl mb-4 bg-gradient-to-r from-pink-400 via-yellow-500 to-sky-500 bg-clip-text text-transparent font-bold">Gestionnaire des tâches</h1>
-            <form onSubmit={handleAddTask} className="mb-4 flex flex-col gap-2">
+        <div className="p-3 bg-transparent">
+            <h1 className="text-2xl mb-7 bg-gradient-to-r from-pink-400 via-yellow-500 to-sky-500 bg-clip-text text-transparent font-bold">
+                Gestionnaire des tâches
+            </h1>
+            <form onSubmit={handleAddTask} className="mb-4 p-4 bg-gray-800 bg-opacity-50 rounded-lg flex flex-col gap-2">
                 <input
                     type="text"
                     placeholder="Titre"
                     value={newTask.title}
                     onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-                    className="border p-2 rounded-lg bg-black text-gray-100"
+                    className="border p-2 rounded-lg text-gray-100 bg-black"
                     required
                 />
                 <input
@@ -83,13 +85,13 @@ function TaskManager() {
                     placeholder="Description"
                     value={newTask.description}
                     onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
-                    className="border p-2 rounded-lg bg-black text-gray-100"
+                    className="border p-2 rounded-lg text-gray-100 bg-black"
                     required
                 />
                 <select
                     value={newTask.status}
                     onChange={(e) => setNewTask({ ...newTask, status: e.target.value })}
-                    className="border p-2 rounded-lg bg-black text-gray-100"
+                    className="border p-2 rounded-lg text-gray-100 bg-black"
                 >
                     <option value="En cours">En cours</option>
                     <option value="Terminée">Terminée</option>
@@ -103,9 +105,9 @@ function TaskManager() {
                 </button>
             </form>
 
-            <ul className="bg-gray-800 bg-opacity-50 rounded-lg">
+            <ul className="p-4 bg-gray-800 bg-opacity-50 rounded-lg">
                 {Array.isArray(tasks) && tasks.map(task => (
-                    <li key={task.id} className="mb-2 border-b pb-2 flex justify-between items-center">
+                    <li key={task.id} className="mb-2 border-b pb-2 flex justify-between items-center text-gray-100">
                         <span>{task.title} - {task.description} - <strong>{task.status}</strong></span>
                         <div className="flex gap-2">
                             <button
@@ -134,7 +136,7 @@ function TaskManager() {
                     <select
                         value={updatedStatus}
                         onChange={(e) => setUpdatedStatus(e.target.value)}
-                        className="border p-2 rounded-lg bg-black text-gray-100 mb-2"
+                        className="border p-2 rounded-lg text-gray-100 mb-2"
                     >
                         <option value="En cours">En cours</option>
                         <option value="Terminée">Terminée</option>
