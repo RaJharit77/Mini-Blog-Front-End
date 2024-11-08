@@ -35,7 +35,7 @@ function Navbar() {
             className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${isScrolled || menuOpen ? "bg-black bg-opacity-80 backdrop-blur-md" : "bg-transparent"}`}
         >
             <div className={`max-w-screen-xl mx-auto flex justify-between items-center p-4 ${menuOpen ? 'mt-10' : ''}`}>
-                <a href="https://infinitix-task-manager.vercel.app" className="flex items-center cursor-pointer">
+                <a href="https://infinitix-task-manager.vercel.app/" className="flex items-center cursor-pointer">
                     <img
                         src={logo}
                         alt="Infinitix Logo"

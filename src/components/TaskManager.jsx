@@ -67,8 +67,8 @@ function TaskManager() {
     };
 
     return (
-        <div className="p-3 bg-transparent">
-            <h1 className="text-2xl mb-7 bg-gradient-to-r from-pink-400 via-yellow-500 to-sky-500 bg-clip-text text-transparent font-bold">
+        <div className="p-7 bg-transparent">
+            <h1 className="text-2xl mb-3 bg-gradient-to-r from-pink-400 via-yellow-500 to-sky-500 bg-clip-text text-transparent font-bold">
                 Gestionnaire des tâches
             </h1>
             <form onSubmit={handleAddTask} className="mb-4 p-4 bg-gray-800 bg-opacity-50 rounded-lg flex flex-col gap-2">
