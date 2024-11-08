@@ -18,6 +18,7 @@ function TaskManager() {
             const response = await fetch(`${apiUrl}/api/tasks`);
             if (!response.ok) throw new Error(`Erreur ${response.status}: ${response.statusText}`);
             const data = await response.json();
+            console.log('Données récupérées:', data);
             setTasks(data.tasks || data);
         } catch (error) {
             console.error("Erreur lors de la récupération des tâches:", error);
@@ -26,6 +27,8 @@ function TaskManager() {
 
     const handleAddTask = async (e) => {
         e.preventDefault();
+        console.log("Ajout de la tâche:", newTask);
+
         try {
             const response = await fetch(`${apiUrl}/api/tasks`, {
                 method: "POST",
@@ -64,6 +67,7 @@ function TaskManager() {
     return (
         <div className="p-3 bg-gray-800 bg-opacity-50 rounded-lg">
             <h1 className="text-2xl mb-4 bg-gradient-to-r from-pink-400 via-yellow-500 to-sky-500 bg-clip-text text-transparent font-bold">Gestionnaire des tâches</h1>
+
             <form onSubmit={handleAddTask} className="mb-4 flex flex-col gap-2">
                 <input
                     type="text"
@@ -87,8 +91,8 @@ function TaskManager() {
                     className="border p-2 rounded-lg bg-black text-gray-100"
                 >
                     <option value="En cours">En cours</option>
-                    <option value="En attente">En attente</option>
                     <option value="Terminée">Terminée</option>
+                    <option value="En attente">En attente</option>
                 </select>
                 <button
                     type="submit"
@@ -98,7 +102,6 @@ function TaskManager() {
                 </button>
             </form>
 
-            {/* Liste des tâches déplacée sous le formulaire */}
             <ul>
                 {Array.isArray(tasks) && tasks.map(task => (
                     <li key={task.id} className="mb-2 border-b pb-2 flex justify-between items-center">
