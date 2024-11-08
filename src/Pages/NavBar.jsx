@@ -51,7 +51,7 @@ function Navbar() {
                 </a>
 
                 <button
-                    className={`absolute right-4 top-7 block md:hidden text-creme bg-black p-2 rounded`}
+                    className={`absolute right-4 top-7 block md:hidden text-white bg-black p-2 rounded`}
                     onClick={() => setMenuOpen(!menuOpen)}
                     style={{ zIndex: 51 }}
                 >
