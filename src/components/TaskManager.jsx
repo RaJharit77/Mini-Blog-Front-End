@@ -18,7 +18,7 @@ function TaskManager() {
             const response = await fetch(`${apiUrl}/api/tasks`);
             if (!response.ok) throw new Error(`Erreur ${response.status}: ${response.statusText}`);
             const data = await response.json();
-            setTasks(data.tasks || data); 
+            setTasks(data.tasks || data);
         } catch (error) {
             console.error("Erreur lors de la récupération des tâches:", error);
         }
@@ -32,18 +32,18 @@ function TaskManager() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newTask)
             });
-    
+
             if (!response.ok) {
                 throw new Error(`Erreur lors de l'ajout de la tâche: ${response.status}`);
             }
-    
+
             setNewTask({ title: "", description: "", status: "En cours" });
             await fetchTasks();
         } catch (error) {
             console.error("Erreur lors de l'ajout de la tâche:", error);
         }
     };
-    
+
     const handleUpdateStatus = async (taskId) => {
         await fetch(`${apiUrl}/api/tasks/${taskId}`, {
             method: "PUT",
@@ -64,73 +64,66 @@ function TaskManager() {
     return (
         <div className="p-3 bg-gray-800 bg-opacity-50 rounded-lg">
             <h1 className="text-2xl mb-4 bg-gradient-to-r from-pink-400 via-yellow-500 to-sky-500 bg-clip-text text-transparent font-bold">Gestionnaire des tâches</h1>
-            
-            {/* Formulaire d'ajout de tâche */}
-            <div className="mb-6">
-                <form onSubmit={handleAddTask} className="mb-4 flex flex-col gap-2">
-                    <input
-                        type="text"
-                        placeholder="Titre"
-                        value={newTask.title}
-                        onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-                        className="border p-2 rounded-lg bg-black text-gray-100"
-                        required
-                    />
-                    <input
-                        type="text"
-                        placeholder="Description"
-                        value={newTask.description}
-                        onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
-                        className="border p-2 rounded-lg bg-black text-gray-100"
-                        required
-                    />
-                    <select
-                        value={newTask.status}
-                        onChange={(e) => setNewTask({ ...newTask, status: e.target.value })}
-                        className="border p-2 rounded-lg bg-black text-gray-100"
-                    >
-                        <option value="En cours">En cours</option>
-                        <option value="Terminée">Terminée</option>
-                        <option value="En attente">En attente</option>
-                    </select>
-                    <button
-                        type="submit"
-                        className="bg-sky-500 text-white p-2 mt-2 hover:bg-gradient-to-r hover:from-teal-500 hover:via-pink-500 hover:to-cyan-500 hover:text-black"
-                    >
-                        Ajouter une tâche
-                    </button>
-                </form>
-            </div>
-            
-            {/* Liste des tâches */}
-            <div>
-                <ul>
-                    {Array.isArray(tasks) && tasks.map(task => (
-                        <li key={task.id} className="mb-2 border-b pb-2 flex justify-between items-center">
-                            <span>{task.title} - {task.description} - <strong>{task.status}</strong></span>
-                            <div className="flex gap-2">
-                                <button
-                                    onClick={() => {
-                                        setSelectedTask(task.id);
-                                        setUpdatedStatus(task.status);
-                                    }}
-                                    className="text-yellow-500 p-1 hover:text-yellow-400"
-                                >
-                                    <FaEdit />
-                                </button>
-                                <button
-                                    onClick={() => handleDeleteTask(task.id)}
-                                    className="text-red-500 p-1 hover:text-red-400"
-                                >
-                                    <FaTrash />
-                                </button>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            <form onSubmit={handleAddTask} className="mb-4 flex flex-col gap-2">
+                <input
+                    type="text"
+                    placeholder="Titre"
+                    value={newTask.title}
+                    onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+                    className="border p-2 rounded-lg bg-black text-gray-100"
+                    required
+                />
+                <input
+                    type="text"
+                    placeholder="Description"
+                    value={newTask.description}
+                    onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
+                    className="border p-2 rounded-lg bg-black text-gray-100"
+                    required
+                />
+                <select
+                    value={newTask.status}
+                    onChange={(e) => setNewTask({ ...newTask, status: e.target.value })}
+                    className="border p-2 rounded-lg bg-black text-gray-100"
+                >
+                    <option value="En cours">En cours</option>
+                    <option value="En attente">En attente</option>
+                    <option value="Terminée">Terminée</option>
+                </select>
+                <button
+                    type="submit"
+                    className="bg-sky-500 text-white p-2 mt-2 hover:bg-gradient-to-r hover:from-teal-500 hover:via-pink-500 hover:to-cyan-500 hover:text-black"
+                >
+                    Ajouter une tâche
+                </button>
+            </form>
 
-            {/* Modification du statut de la tâche */}
+            {/* Liste des tâches déplacée sous le formulaire */}
+            <ul>
+                {Array.isArray(tasks) && tasks.map(task => (
+                    <li key={task.id} className="mb-2 border-b pb-2 flex justify-between items-center">
+                        <span>{task.title} - {task.description} - <strong>{task.status}</strong></span>
+                        <div className="flex gap-2">
+                            <button
+                                onClick={() => {
+                                    setSelectedTask(task.id);
+                                    setUpdatedStatus(task.status);
+                                }}
+                                className="text-yellow-500 p-1 hover:text-yellow-400"
+                            >
+                                <FaEdit />
+                            </button>
+                            <button
+                                onClick={() => handleDeleteTask(task.id)}
+                                className="text-red-500 p-1 hover:text-red-400"
+                            >
+                                <FaTrash />
+                            </button>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+
             {selectedTask && (
                 <div className="mt-4 p-4 bg-gray-700 rounded-lg">
                     <h2 className="text-xl mb-2 text-white">Modifier le statut de la tâche</h2>
