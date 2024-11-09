@@ -35,7 +35,7 @@ function TaskStats() {
 
     return (
         <div className="p-4 sm:p-6 flex flex-col items-center">
-            <h1 className="text-xl sm:text-xl bg-gradient-to-r from-sky-400 via-yellow-400 to-sky-500 bg-clip-text text-transparent font-bold mb-1 sm:mb-7 text-center">
+            <h1 className="text-xl sm:text-xl bg-gradient-to-r from-sky-400 via-yellow-400 to-sky-500 bg-clip-text text-transparent font-bold mb-0 sm:mb-7 text-center">
                 Statistiques des tâches
             </h1>
             <div className="flex flex-col sm:flex-row justify-center w-full space-y-4 sm:space-y-0 sm:space-x-4">
