@@ -6,5 +6,5 @@ window.addEventListener('keydown', function (event) {
 });
 
 window.addEventListener('beforeunload', function (event) {
-    location.reload();
+    // Aucun code à exécuter ici pour éviter un rafraîchissement indésirable
 });
