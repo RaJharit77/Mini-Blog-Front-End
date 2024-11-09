@@ -12,7 +12,7 @@ const Inscription = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${apiUrl}/api/inscription`, {
+            const response = await fetch(`${apiUrl}/inscription`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

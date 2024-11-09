@@ -4,7 +4,7 @@ const apiUrl = import.meta.env.VITE_REACT_API_URL || "https://infinitix-task-bac
 
 async function checkForUpdates() {
     try {
-        const response = await fetch(`${apiUrl}/api/version`);
+        const response = await fetch(`${apiUrl}/version`);
         const data = await response.json();
 
         if (!currentVersion) {

@@ -12,7 +12,7 @@ const Connexion = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${apiUrl}/api/connexion`, {
+            const response = await fetch(`${apiUrl}/connexion`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

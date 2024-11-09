@@ -17,7 +17,7 @@ function TaskManager() {
 
     const fetchTasks = async () => {
         try {
-            const response = await fetch(`${apiUrl}/api/tasks`);
+            const response = await fetch(`${apiUrl}/tasks`);
             if (!response.ok) throw new Error(`Erreur ${response.status}: ${response.statusText}`);
             const data = await response.json();
             console.log('Données récupérées:', data);
@@ -32,7 +32,7 @@ function TaskManager() {
         console.log("Ajout de la tâche:", newTask);
 
         try {
-            const response = await fetch(`${apiUrl}/api/tasks`, {
+            const response = await fetch(`${apiUrl}/tasks`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newTask)
@@ -50,7 +50,7 @@ function TaskManager() {
     };
 
     const handleUpdateStatus = async (taskId) => {
-        await fetch(`${apiUrl}/api/tasks/${taskId}`, {
+        await fetch(`${apiUrl}/tasks/${taskId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ status: updatedStatus })
@@ -60,7 +60,7 @@ function TaskManager() {
     };
 
     const handleDeleteTask = async (taskId) => {
-        await fetch(`${apiUrl}/api/tasks/${taskId}`, {
+        await fetch(`${apiUrl}/tasks/${taskId}`, {
             method: "DELETE"
         });
         fetchTasks();
