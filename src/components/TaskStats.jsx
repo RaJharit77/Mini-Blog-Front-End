@@ -10,7 +10,7 @@ function TaskStats() {
     /**const apiUrl = "http://localhost:5000";*/
 
     useEffect(() => {
-        fetch(`${apiUrl}/tasks`)
+        fetch(`${apiUrl}/api/tasks`)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
