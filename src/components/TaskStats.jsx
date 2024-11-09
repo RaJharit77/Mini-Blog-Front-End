@@ -40,7 +40,7 @@ function TaskStats() {
             </h1>
             <div className="flex flex-col sm:flex-row justify-center w-full space-y-4 sm:space-y-0 sm:space-x-4">
                 <div className="w-full sm:w-1/2 p-2 sm:p-4 flex justify-center">
-                    <div className="w-3/4"> {/* Réduction de la taille du conteneur du Doughnut */}
+                    <div className="w-3/4">
                         <h2 className="text-md sm:text-lg mb-2 bg-gradient-to-r from-yellow-400 via-pink-400 to-sky-400 bg-clip-text text-transparent text-center sm:text-left">
                             Diagramme en Doughnut
                         </h2>
@@ -58,7 +58,7 @@ function TaskStats() {
                     </div>
                 </div>
                 <div className="w-full sm:w-1/2 p-2 sm:p-4 mt-4 sm:mt-0 flex justify-center">
-                    <div className="w-3/4"> {/* Réduction de la taille du conteneur du Pie */}
+                    <div className="w-3/4">
                         <h2 className="text-md sm:text-lg mb-2 bg-gradient-to-r from-sky-500 via-pink-400 to-yellow-400 bg-clip-text text-transparent text-center sm:text-left">
                             Diagramme en Pie
                         </h2>
