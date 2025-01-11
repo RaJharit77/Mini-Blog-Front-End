@@ -20,3 +20,4 @@ Voici le lien du site web déployé sur render(https://render.com):
 
 Infinitix Task: https://infinitix-task-manager.onrender.com
 
+N.B: Le nom du repository n'a rien avoir avec le nom du projet, c'est juste un nom que je préfère xD.
